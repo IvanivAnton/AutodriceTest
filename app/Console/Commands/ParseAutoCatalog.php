@@ -4,12 +4,11 @@ namespace App\Console\Commands;
 
 use App\Domain\RequestModels\ParseAutoCatalogRequestModel;
 use App\Domain\UseCases\UpdateAutoCatalogInputInterface;
+use Symfony\Component\Console\Command\Command;
 
 class ParseAutoCatalog extends \Illuminate\Console\Command
 {
-    private UpdateAutoCatalogInputInterface $useCase;
-
-
+    private UpdateAutoCatalogInputInterface $updateAutoCatalogUseCase;
 
     /**
      * The name and signature of the console command.
@@ -31,14 +30,14 @@ class ParseAutoCatalog extends \Illuminate\Console\Command
     public function __construct(UpdateAutoCatalogInputInterface $useCase)
     {
         parent::__construct();
-        $this->useCase = $useCase;
+        $this->updateAutoCatalogUseCase = $useCase;
     }
 
 
     /**
      * @throws \Exception
      */
-    public function handle()
+    public function handle(): int
     {
         $path = $this->argument('path') ?? env("XML_AUTO_CATALOG_DEFAULT_PATH");
         if(empty($path)) {
@@ -47,6 +46,8 @@ class ParseAutoCatalog extends \Illuminate\Console\Command
 
         $requestModel = new ParseAutoCatalogRequestModel($path);
 
-        $this->useCase->update($requestModel);
+        $this->updateAutoCatalogUseCase->update($requestModel);
+
+        return Command::SUCCESS;
     }
 }

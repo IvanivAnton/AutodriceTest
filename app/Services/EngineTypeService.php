@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Service;
+namespace App\Services;
 
 use App\Domain\Interfaces\EngineTypeServiceInterface;
 use App\Enums\EngineTypesEnum;

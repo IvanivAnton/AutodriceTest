@@ -8,10 +8,10 @@ use App\Domain\Interfaces\GearTypeServiceInterface;
 use App\Domain\Interfaces\TransmissionServiceInterface;
 use App\Domain\UseCases\UpdateAutoCatalog;
 use App\Domain\UseCases\UpdateAutoCatalogInputInterface;
-use App\Service\AutoCatalogXmlParserService;
-use App\Service\EngineTypeService;
-use App\Service\GearTypeService;
-use App\Service\TransmissionService;
+use App\Services\AutoCatalogXmlParserService;
+use App\Services\EngineTypeService;
+use App\Services\GearTypeService;
+use App\Services\TransmissionService;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
